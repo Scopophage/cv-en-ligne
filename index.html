@@ -3,28 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon CV</title>
+    <title>CV en ligne</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Erwann Bonenfant</h1>
-        <p>Étudiant en Bachelor cybersécurité et administration réseau</p>
-    </header>
+    <div class="container">
+        <header>
+            <div class="profile">
+                <img src="photo.jpg" alt="Photo de profil" class="profile-img">
+                <h1>Erwann Bonenfant</h1>
+                <p>Développeur Web & Mobile | Passionné par la cybersécurité</p>
+            </div>
+        </header>
 
-    <section>
-        <h2>Expérience</h2>
-        <ul>
-            <li>Chef de projet dans une agence digitale</li>
-            <li>Stage en cybersécurité</li>
-        </ul>
-    </section>
+        <section class="experience">
+            <h2>Expérience professionnelle</h2>
+            <div class="job">
+                <h3>Chef de projet</h3>
+                <p class="company">MyDigitalSchool</p>
+                <p><span class="date">2024 - Présent</span> | Description de l'expérience...</p>
+            </div>
+            <!-- Ajoute d'autres expériences ici -->
+        </section>
 
-    <section>
-        <h2>Compétences</h2>
-        <ul>
-            <li>Cybersécurité</li>
-            <li>Développement web</li>
-        </ul>
-    </section>
+        <section class="skills">
+            <h2>Compétences</h2>
+            <ul>
+                <li>Développement web (HTML, CSS, JavaScript)</li>
+                <li>Cybersécurité (Gestion des risques, ISO 27001)</li>
+                <li>Gestion de projet (Agile, Scrum)</li>
+            </ul>
+        </section>
+
+        <section class="contact">
+            <h2>Contact</h2>
+            <p>Email : <a href="mailto:erwann@example.com">erwann@example.com</a></p>
+            <p>LinkedIn : <a href="https://linkedin.com/in/erwann">Profil LinkedIn</a></p>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

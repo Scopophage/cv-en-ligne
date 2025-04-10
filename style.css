@@ -360,20 +360,16 @@ section:nth-child(even) {
     margin-bottom: 1.5rem;
 }
 
-.contact-detail {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    transition: transform 0.2s ease;
+/* Règle plus générale pour tous les éléments dans contact-detail */
+.contact-detail * {
+    color: #000000 !important; /* Force la couleur noire avec !important */
 }
 
-.contact-detail:hover {
-    transform: translateX(5px);
-}
-
-.contact-detail p {
-    color: #000000; /* Noir explicite */
-    margin-bottom: 0; /* Pour éviter des espaces indésirables */
+/* Si cela ne fonctionne toujours pas, essayez cette règle encore plus spécifique */
+.contact-info .contact-detail p,
+.contact-info .contact-detail span,
+.contact-info .contact-detail a {
+    color: #000000 !important;
 }
 
 .contact-icon {

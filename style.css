@@ -371,6 +371,11 @@ section:nth-child(even) {
     transform: translateX(5px);
 }
 
+.contact-detail p {
+    color: #000000; /* Noir explicite */
+    margin-bottom: 0; /* Pour éviter des espaces indésirables */
+}
+
 .contact-icon {
     font-size: 1.5rem;
     color: #4d90fe;

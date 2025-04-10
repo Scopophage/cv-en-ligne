@@ -1,1043 +1,482 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erwann Bonenfant | Cybersécurité & Réseaux</title>
-    <!-- Fonts & Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <style>
-        :root {
-            --primary: #1e3a8a;
-            --secondary: #0f172a;
-            --accent: #3b82f6;
-            --light: #f8fafc;
-            --dark: #0f172a;
-            --success: #16a34a;
-            --text: #334155;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text);
-            background-color: var(--light);
-            overflow-x: hidden;
-        }
-        
-        /* Header & Navigation */
-        .header {
-            background-color: var(--primary);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        
-        .navbar-nav .nav-link {
-            color: white !important;
-            font-weight: 500;
-            margin: 0 1rem;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .navbar-nav .nav-link:hover {
-            color: rgba(255, 255, 255, 0.8) !important;
-        }
-        
-        .navbar-nav .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background-color: white;
-            bottom: 0;
-            left: 0;
-            transition: width 0.3s ease;
-        }
-        
-        .navbar-nav .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .navbar-toggler {
-            border: none;
-            color: white;
-        }
-        
-        .navbar-toggler:focus {
-            box-shadow: none;
-        }
-        
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('https://picsum.photos/1920/1080?random=1');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            position: relative;
-            padding-top: 60px;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            animation: fadeIn 2s;
-        }
-        
-        .hero h2 {
-            font-size: 1.8rem;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            animation: fadeIn 2s 0.5s both;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            animation: fadeIn 2s 1s both;
-        }
-        
-        .btn-primary {
-            background-color: var(--accent);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-outline {
-            border: 2px solid white;
-            color: white;
-            background: transparent;
-            padding: 0.75rem 1.5rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-outline:hover {
-            background-color: white;
-            color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Section Styles */
-        section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            height: 4px;
-            width: 70px;
-            background-color: var(--accent);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        /* About Section */
-        .about-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .about-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .about-icon {
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-        
-        /* Skills Section */
-        .skills-section {
-            background-color: #f8fafc;
-        }
-        
-        .skill-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            height: 100%;
-        }
-        
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .skill-card h3 {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-weight: 600;
-        }
-        
-        .skill-item {
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .skill-item p {
-            margin-bottom: 0;
-            font-weight: 500;
-        }
-        
-        .progress-container {
-            width: 100%;
-            height: 8px;
-            background-color: #e2e8f0;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 0.5rem;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background-color: var(--accent);
-            border-radius: 4px;
-            transition: width 1.5s ease;
-        }
-        
-        /* Experience Section */
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: var(--primary);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-        }
-        
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-            margin-bottom: 2rem;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-        
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            right: -13px;
-            background-color: white;
-            border: 4px solid var(--accent);
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-        
-        .timeline-item:nth-child(even)::after {
-            left: -12px;
-        }
-        
-        .timeline-content {
-            padding: 20px 30px;
-            background-color: white;
-            position: relative;
-            border-radius: 6px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .timeline-content h3 {
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        .timeline-date {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Projects Section */
-        .project-card {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            height: 250px;
-        }
-        
-        .project-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.9));
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 1.5rem;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-        
-        .project-card:hover .project-img {
-            transform: scale(1.1);
-        }
-        
-        .project-title {
-            color: white;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .project-tech {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-        }
-        
-        /* Contact Section */
-        .contact-section {
-            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(30, 58, 138, 0.9)), url('https://picsum.photos/1920/1080?random=3');
-            background-size: cover;
-            background-position: center;
-            color: white;
-        }
-        
-        .contact-info {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .contact-info h3 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .contact-icon {
-            font-size: 1.5rem;
-            color: var(--accent);
-            margin-right: 1rem;
-        }
-        
-        .contact-detail p {
-            margin-bottom: 0;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.25rem;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        /* Interests Section */
-        .interests-section {
-            background-color: #f8fafc;
-        }
-        
-        .interest-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            height: 100%;
-        }
-        
-        .interest-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .interest-icon {
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--secondary);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.25rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            cursor: pointer;
-        }
-        
-        .back-to-top:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Media Queries */
-        @media (max-width: 991.98px) {
-            .timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-            
-            .timeline-item:nth-child(odd)::after,
-            .timeline-item:nth-child(even)::after {
-                left: 18px;
-            }
-        }
-        
-        @media (max-width: 767.98px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero h2 {
-                font-size: 1.5rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erwann Bonenfant | Cybersécurité & Réseaux</title>
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- External Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                    <a class="navbar-brand text-white" href="#">EB</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-bars text-white"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#about">À propos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#skills">Compétences</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#experience">Expériences</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#interests">Centres d'intérêt</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#contact">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white" href="#">EB</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-white"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#about">À propos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#skills">Compétences</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#experience">Expériences</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#interests">Centres d'intérêt</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Erwann Bonenfant</h1>
-            <h2>Étudiant en Cybersécurité et Réseaux</h2>
-            <div class="hero-buttons">
-                <a href="#about" class="btn btn-primary">Découvrir mon profil</a>
-                <a href="#contact" class="btn btn-outline">Me contacter</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>À propos de moi</h2>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-4 mb-4">
-                    <div class="about-card">
-                        <div class="about-icon">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <h3>Formation</h3>
-                        <p>En MBA Cybersécurité et Architecture Réseaux en alternance à My Digital School Rennes.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="about-card">
-                        <div class="about-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <h3>Expérience</h3>
-                        <p>Alternance chez BlueKanGo en tant qu'administrateur réseaux et gestion du SI.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="about-card">
-                        <div class="about-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h3>Objectif</h3>
-                        <p>Devenir expert en cybersécurité avec des compétences solides en architecture réseau.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Mes Compétences</h2>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="skill-card">
-                        <h3>Cybersécurité et Réseaux</h3>
-                        <div class="skill-item">
-                            <p>Infrastructure réseau VMware</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <p>Pare-feu (PfSense, StormShield, FortiGate)</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <p>Monitoring (CyberWatch, Centreon, Graylog)</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <p>Tests et audits de sécurité</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <p>Forensique (CTF, WireShark)</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 70%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="skill-card">
-                        <h3>Automatisation et Système</h3>
-                        <div class="skill-item">
-                            <p>Python / PowerShell</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <p>API REST</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <p>Dashboards KPI (Grafana, GLPI)</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <p>Active Directory / Azure AD</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <p>Microsoft Entra ID / Security EDR</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-6 mb-4">
-                    <div class="skill-card">
-                        <h3>Logiciels maîtrisés</h3>
-                        <div class="skill-item">
-                            <p>Suite Office365 / Google</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <p>Trello</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <p>Canva / CapCut</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <p>Draw.io (maquettes réseaux)</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="skill-card">
-                        <h3>Certifications & Formations</h3>
-                        <div class="skill-item">
-                            <p>SecNum Académie</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 100%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <p>Certification PIX</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 100%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <p>Bachelor Cybersécurité (en cours)</p>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 60%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <div class="section-title">
-                <h2>Expériences Professionnelles</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <p class="timeline-date">2024 - 2025</p>
-                        <h3>Alternance BlueKanGo</h3>
-                        <p>Cesson Sévigné</p>
-                        <ul>
-                            <li>Gestion du SI</li>
-                            <li>KPI pour la norme ISO 27001</li>
-                            <li>Scripts PowerShell/Python d'automatisation</li>
-                            <li>API Rest et Microsoft Azure</li>
-                            <li>Dashboards avec Grafana</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <p class="timeline-date">2022 - 2024</p>
-                        <h3>Stages BTS</h3>
-                        <p>Saint Grégoire & Dol de Bretagne</p>
-                        <ul>
-                            <li>Infogérance parc informatique</li>
-                            <li>Mise à jour parc informatique</li>
-                            <li>Planification de tâches</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <p class="timeline-date">Étés 2020 - 2023</p>
-                        <h3>Ouvrier Agricole</h3>
-                        <p>Serres Levrel, Montauban de Bretagne</p>
-                        <ul>
-                            <li>Effeuillage et cueillette</li>
-                            <li>Calibrage</li>
-                            <li>Nettoyage</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Formation Section -->
-    <section id="formation" class="skills-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Formation</h2>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="skill-card">
-                        <h3>2024 - 2025</h3>
-                        <h4>My Digital School, Rennes</h4>
-                        <p>MBA Cybersécurité et Architecture Réseaux en Alternance</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="skill-card">
-                        <h3>2022 - 2024</h3>
-                        <h4>Pôle Supérieur De La Salle, Rennes</h4>
-                        <p>BTS Services Informatiques aux Organisations option Solutions d'Infrastructures Systèmes et Réseaux</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="skill-card">
-                        <h3>2020 - 2022</h3>
-                        <h4>Lycée Joliot Curie, Rennes</h4>
-                        <p>Bac STI2D option SIN (Systèmes d'Information et Numérique)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interests Section -->
-    <section id="interests" class="interests-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Centres d'intérêt</h2>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="interest-card">
-                        <div class="interest-icon">
-                            <i class="fas fa-motorcycle"></i>
-                        </div>
-                        <h3>Moto</h3>
-                        <p>Passion pour les deux roues et la mécanique</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="interest-card">
-                        <div class="interest-icon">
-                            <i class="fas fa-bicycle"></i>
-                        </div>
-                        <h3>Mécanique vélo</h3>
-                        <p>Réparation et optimisation de vélos</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="interest-card">
-                        <div class="interest-icon">
-                            <i class="fas fa-tshirt"></i>
-                        </div>
-                        <h3>Mode Vestimentaire</h3>
-                        <p>Intérêt pour les tendances et le style</p>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="interest-card">
-                        <div class="interest-icon">
-                            <i class="fas fa-dumbbell"></i>
-                        </div>
-                        <h3>Musculation</h3>
-                        <p>Pratique régulière pour garder la forme</p>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="interest-card">
-                        <div class="interest-icon">
-                            <i class="fas fa-music"></i>
-                        </div>
-                        <h3>Découverte Musicale</h3>
-                        <p>Exploration de nouveaux genres et artistes</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contact</h2>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="contact-info">
-                        <h3>Coordonnées</h3>
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <p>06 01 82 00 30</p>
-                        </div>
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <p>bonenfant.erwann@gmail.com</p>
-                        </div>
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <p>1 Avenue d'Armorique, Betton, 35830</p>
-                        </div>
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-car"></i>
-                            </div>
-                            <p>Permis B + Véhicule</p>
-                        </div>
-                        <div class="social-links">
-                            <a href="www.linkedin.com/in/erwann-bonenfant-8902b2250" target="_blank" class="social-link">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://github.com/Scopophage" target="_blank" class="social-link">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; Erwann Bonenfant - 2025. Tous droits réservés.</p>
-                <p>Images générées aléatoirement. <a href="#" onClick="javascript:document.location.reload(true)" class="text-white">Rafraîchir la page</a> pour en voir de nouvelles.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <div class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
+      </nav>
     </div>
+  </header>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Back to Top Button
-        const backToTopButton = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Skill bars animation
-        const skillSection = document.querySelector('#skills');
-        const progressBars = document.querySelectorAll('.progress-bar');
-        
-        function showProgress() {
-            progressBars.forEach(progressBar => {
-                const value = progressBar.style.width;
-                progressBar.style.width = '0';
-                setTimeout(() => {
-                    progressBar.style.width = value;
-                }, 100);
-            });
+  <!-- Hero Section avec image de fond conservée -->
+  <section class="hero" id="home" style="background: linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.7)), url('https://picsum.photos/1920/1080?random=1');">
+    <div class="container text-center">
+      <h1>Erwann Bonenfant</h1>
+      <h2>Étudiant en Cybersécurité et Réseaux</h2>
+      <div class="hero-buttons">
+        <a href="#about" class="btn btn-primary">Découvrir mon profil</a>
+        <a href="#contact" class="btn btn-outline">Me contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>À propos de moi</h2>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+          <div class="about-card">
+            <div class="about-icon">
+              <i class="fas fa-user-graduate"></i>
+            </div>
+            <h3>Formation</h3>
+            <p>En MBA Cybersécurité et Architecture Réseaux en alternance à My Digital School Rennes.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="about-card">
+            <div class="about-icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <h3>Expérience</h3>
+            <p>Alternance chez BlueKanGo en tant qu'administrateur réseaux et gestion du SI.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="about-card">
+            <div class="about-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Objectif</h3>
+            <p>Devenir expert en cybersécurité avec des compétences solides en architecture réseau.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Mes Compétences</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="skill-card">
+            <h3>Cybersécurité et Réseaux</h3>
+            <div class="skill-item">
+              <p>Infrastructure réseau VMware</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Pare-feu (PfSense, StormShield, FortiGate)</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Monitoring (CyberWatch, Centreon, Graylog)</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Tests et audits de sécurité</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="75%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Forensique (CTF, WireShark)</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="70%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="skill-card">
+            <h3>Automatisation et Système</h3>
+            <div class="skill-item">
+              <p>Python / PowerShell</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>API REST</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="75%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Dashboards KPI (Grafana, GLPI)</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Active Directory / Azure AD</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Microsoft Entra ID / Security EDR</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="80%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6 mb-4">
+          <div class="skill-card">
+            <h3>Logiciels maîtrisés</h3>
+            <div class="skill-item">
+              <p>Suite Office365 / Google</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="95%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Trello</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Canva / CapCut</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="75%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Draw.io (maquettes réseaux)</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="85%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="skill-card">
+            <h3>Certifications & Formations</h3>
+            <div class="skill-item">
+              <p>SecNum Académie</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="100%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Certification PIX</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="100%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Bachelor Cybersécurité (en cours)</p>
+              <div class="progress-container">
+                <div class="progress-bar" data-progress="60%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-title">
+        <h2>Expériences Professionnelles</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <p class="timeline-date">2024 - 2025</p>
+            <h3>Alternance BlueKanGo</h3>
+            <p>Cesson Sévigné</p>
+            <ul>
+              <li>Gestion du SI</li>
+              <li>KPI pour la norme ISO 27001</li>
+              <li>Scripts PowerShell/Python d'automatisation</li>
+              <li>API Rest et Microsoft Azure</li>
+              <li>Dashboards avec Grafana</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <p class="timeline-date">2022 - 2024</p>
+            <h3>Stages BTS</h3>
+            <p>Saint Grégoire & Dol de Bretagne</p>
+            <ul>
+              <li>Infogérance parc informatique</li>
+              <li>Mise à jour du parc</li>
+              <li>Planification de tâches</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <p class="timeline-date">Étés 2020 - 2023</p>
+            <h3>Ouvrier Agricole</h3>
+            <p>Serres Levrel, Montauban de Bretagne</p>
+            <ul>
+              <li>Effeuillage et cueillette</li>
+              <li>Calibrage</li>
+              <li>Nettoyage</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formation Section -->
+  <section id="formation" class="skills-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Formation</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="skill-card">
+            <h3>2024 - 2025</h3>
+            <h4>My Digital School, Rennes</h4>
+            <p>MBA Cybersécurité et Architecture Réseaux en Alternance</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="skill-card">
+            <h3>2022 - 2024</h3>
+            <h4>Pôle Supérieur De La Salle, Rennes</h4>
+            <p>BTS Services Informatiques aux Organisations – option Solutions d'Infrastructures Systèmes et Réseaux</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="skill-card">
+            <h3>2020 - 2022</h3>
+            <h4>Lycée Joliot Curie, Rennes</h4>
+            <p>Bac STI2D option SIN (Systèmes d'Information et Numérique)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interests Section -->
+  <section id="interests" class="interests-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Centres d'intérêt</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="interest-card">
+            <div class="interest-icon">
+              <i class="fas fa-motorcycle"></i>
+            </div>
+            <h3>Moto</h3>
+            <p>Passion pour les deux roues et la mécanique</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="interest-card">
+            <div class="interest-icon">
+              <i class="fas fa-bicycle"></i>
+            </div>
+            <h3>Mécanique vélo</h3>
+            <p>Réparation et optimisation de vélos</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="interest-card">
+            <div class="interest-icon">
+              <i class="fas fa-tshirt"></i>
+            </div>
+            <h3>Mode Vestimentaire</h3>
+            <p>Intérêt pour les tendances et le style</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="interest-card">
+            <div class="interest-icon">
+              <i class="fas fa-dumbbell"></i>
+            </div>
+            <h3>Musculation</h3>
+            <p>Pratique régulière pour garder la forme</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="interest-card">
+            <div class="interest-icon">
+              <i class="fas fa-music"></i>
+            </div>
+            <h3>Découverte Musicale</h3>
+            <p>Exploration de nouveaux genres et artistes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section avec image de fond et dégradé préservés -->
+  <section id="contact" class="contact-section" style="background: linear-gradient(rgba(30,58,138,0.9), rgba(30,58,138,0.9)), url('https://picsum.photos/1920/1080?random=3');">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="contact-info">
+            <h3>Coordonnées</h3>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <p>06 01 82 00 30</p>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <p>bonenfant.erwann@gmail.com</p>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <p>1 Avenue d'Armorique, Betton, 35830</p>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <i class="fas fa-car"></i>
+              </div>
+              <p>Permis B + Véhicule</p>
+            </div>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/erwann-bonenfant-8902b2250" target="_blank" class="social-link">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://github.com/Scopophage" target="_blank" class="social-link">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; Erwann Bonenfant - 2025. Tous droits réservés.</p>
+        <p>Images générées aléatoirement. <a href="#" onclick="document.location.reload(true)" class="text-white">Rafraîchir la page</a> pour en voir de nouvelles.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Bouton "Back to Top"
+    const backToTopButton = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTopButton.classList.toggle('visible', window.pageYOffset > 300);
+    });
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Animation des barres de compétences
+    const skillSection = document.querySelector('#skills');
+    const progressBars = document.querySelectorAll('.progress-bar');
+
+    function animateProgress() {
+      progressBars.forEach(bar => {
+        const finalWidth = bar.getAttribute('data-progress');
+        bar.style.width = finalWidth;
+      });
+    }
+
+    function onScroll() {
+      const sectionPos = skillSection.getBoundingClientRect().top;
+      const screenPos = window.innerHeight / 1.3;
+      if (sectionPos < screenPos) {
+        animateProgress();
+        window.removeEventListener('scroll', onScroll);
+      }
+    }
+    window.addEventListener('scroll', onScroll);
+
+    // Défilement fluide pour les liens d'ancrage
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
         }
-        
-        window.addEventListener('scroll', () => {
-            const sectionPos = skillSection.getBoundingClientRect().top;
-            const screenPos = window.innerHeight / 1.3;
-            
-            if (sectionPos < screenPos) {
-                showProgress();
-                window.removeEventListener('scroll', arguments.callee);
-            }
-        });
-        
-        // Smooth scrolling for all anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                document.querySelector(targetId).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+      });
+    });
+  </script>
 </body>
 </html>
